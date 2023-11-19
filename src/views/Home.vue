@@ -1,17 +1,14 @@
 <script setup lang="ts">
 import { storeToRefs } from "pinia";
-import { usePackagesListStore } from "../stores/packagesList";
-import { onMounted, computed, ref, watch } from "vue";
-import { useRouter, useRoute } from "vue-router";
-import { RegistryReqParams } from "../stores/types";
-import Footer from "../components/UI/Footer.vue";
-import Spinner from "../components/UI/Spinner.vue";
-import Input from "../components/UI/Input.vue";
+import { computed, onMounted, ref, watch } from "vue";
 import PackagesList from "../components/PackagesList.vue";
+import Footer from "../components/UI/Footer.vue";
+import Input from "../components/UI/Input.vue";
+import Spinner from "../components/UI/Spinner.vue";
+import Pagination from "../components/UI/Pagination.vue";
+import { usePackagesListStore } from "../stores/packagesList";
+import { RegistryReqParams } from "../stores/types";
 import { watchDebounced } from "@vueuse/core";
-
-const router = useRouter();
-const route = useRoute();
 
 const store = usePackagesListStore();
 const { isLoading, total } = storeToRefs(store);
@@ -21,7 +18,6 @@ const { searchPackage } = store;
 const page = ref(1);
 const size = ref(10);
 const text = ref("jq");
-const pageCount = computed(() => Math.ceil(total.value / size.value));
 
 const params = computed<RegistryReqParams>(() => ({
   text: text.value,
@@ -45,10 +41,9 @@ watchDebounced(
   () => params.value,
   () => {
     if (params.value.text.length < 2) return;
-    router.push({ query: params.value });
     searchPackage(params.value);
   },
-  { debounce: 500, maxWait: 1000 },
+  { debounce: 500 },
 );
 </script>
 
@@ -63,18 +58,11 @@ watchDebounced(
         </v-card>
 
         <v-card flat class="my-4 bg-indigo">
-          <spinner v-if="isLoading" />
-          <v-card-text v-else>
-            <PackagesList>
+          <v-card-text>
+            <spinner v-if="isLoading" />
+            <PackagesList v-else>
               <template #pagination>
-                <div class="text-center my-6">
-                  <v-pagination
-                    v-model="page"
-                    :length="pageCount"
-                    rounded="circle"
-                    :total-visible="6"
-                  />
-                </div>
+                <Pagination v-model="page" :total="total" :size="size" />
               </template>
             </PackagesList>
           </v-card-text>
