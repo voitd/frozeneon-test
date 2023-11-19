@@ -1,28 +1,3 @@
-export interface Links {
-  npm: string;
-  homepage?: string;
-  repository?: string;
-  bugs?: string;
-}
-
-export interface Author {
-  name: string;
-  email?: string;
-  username?: string;
-  url?: string;
-}
-
-export interface Package {
-  name: string;
-  scope: string;
-  version: string;
-  description: string;
-  date: string;
-  links: Links;
-  author: Author;
-  keywords?: string[];
-}
-
 export interface RegistryReqParams {
   text: string;
   size?: number;
@@ -30,24 +5,35 @@ export interface RegistryReqParams {
 }
 
 export interface RegistryApiRes {
-  objects: Object[];
+  objects: Array<Record<string, any>>;
   total: number;
   time: string;
 }
 
-export interface PackageInfo extends Package {
-  readme: string;
-  hits: {
+export interface PackageInfo {
+  name: string;
+  version: string;
+  description: string;
+  author: {
+    name: string;
+    email?: string;
+    username?: string;
+    url?: string;
+  };
+  readme?: string;
+  hits?: {
     rank: number;
     typeRank: number;
     total: number;
     dates: Record<string, number>;
   };
-  bandwidth: {
+  bandwidth?: {
     rank: number;
     typeRank: number;
     total: number;
     dates: Record<string, number>;
   };
-  downloads: Record<string, number>;
+  downloads?: {
+    dates: Record<string, number>;
+  };
 }
