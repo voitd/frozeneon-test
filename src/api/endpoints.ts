@@ -5,9 +5,10 @@ const REGISTRY_API = import.meta.env.VITE_REGISTRY_API;
 const JSDELIVER_API = import.meta.env.VITE_JSDELIVER_API;
 const NPMJS_URL = import.meta.env.VITE_NPMJS_URL;
 
-type PackageReq = {
+type Period = "month" | "last-month" | "year" | "week";
+export type PackageReq = {
   packageName: string;
-  period?: string;
+  period?: Period;
 };
 
 export default {
