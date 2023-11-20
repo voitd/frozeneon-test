@@ -16,7 +16,6 @@ export const usePackageInfoStore = defineStore("packageInfo", (): Store => {
   const packageInfo = ref<PackageInfo | undefined>();
   const isLoading = ref(false);
   const error = ref<string | null>(null);
-
   const getPackageInfo = async (params: PackageReq) => {
     isLoading.value = true;
 

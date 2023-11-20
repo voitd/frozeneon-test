@@ -2,6 +2,7 @@
 import { storeToRefs } from "pinia";
 import { computed, onMounted, ref, watch } from "vue";
 import PackagesList from "../components/PackagesList.vue";
+import MainHeader from "../components/MainHeader.vue";
 import Footer from "../components/UI/Footer.vue";
 import Input from "../components/UI/Input.vue";
 import Spinner from "../components/UI/Spinner.vue";
@@ -49,6 +50,7 @@ watchDebounced(
 
 <template>
   <v-app id="inspire">
+    <main-header />
     <v-main>
       <v-container>
         <h1>NPM Search</h1>

@@ -49,8 +49,8 @@ const showPackageDetails = (item: PackageInfo) => {
   <v-data-table :items="preparedPackages" class="my-4 bg-transparent">
     <template #item="{ item }">
       <tr class="table-item" @click="showPackageDetails(item)">
-        <td class="text-subtitle-1">{{ item.name }}</td>
-        <td class="text-subtitle-2">{{ item.description }}</td>
+        <td class="">{{ item.name }}</td>
+        <td class="">{{ item.description }}</td>
         <td class="">
           <v-chip class="ma-2" color="blue-accent-1">{{ item.version }}</v-chip>
         </td>

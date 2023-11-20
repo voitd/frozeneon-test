@@ -54,7 +54,7 @@ const readme = computed(() => packageInfo.value?.readme);
   }
 }
 .card-readme {
-  max-width: 70%;
+  max-width: 100%;
   h1 {
     font-size: 2.5rem;
     padding: 1rem 0;
