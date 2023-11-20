@@ -17,7 +17,6 @@ const readme = computed(() => packageInfo.value?.readme);
     <spinner v-if="isLoading" />
     <v-row v-else align="start" justify="center">
       <v-col cols="8">
-        <h1 class="my-6">{{ packageInfo?.name }}</h1>
         <v-row align="center" class="my-6">
           <v-col
             ><p class="text-subtitle-1">
@@ -30,7 +29,9 @@ const readme = computed(() => packageInfo.value?.readme);
             ><v-chip color="green">{{ version }}</v-chip></v-col
           ></v-row
         >
-        <vue-markdown :source="readme" class="card-readme" />
+        <div class="card-readme">
+          <vue-markdown :source="readme" />
+        </div>
         <p class="text-subtitle-1 font-weight-bold">Statistics</p>
       </v-col>
 
@@ -41,7 +42,7 @@ const readme = computed(() => packageInfo.value?.readme);
   </v-card-text>
 </template>
 
-<style scoped lang="scss">
+<style lang="scss">
 .v-card {
   display: grid;
   place-items: center;
@@ -50,6 +51,18 @@ const readme = computed(() => packageInfo.value?.readme);
     h2 {
       padding: 1rem 0 !important;
     }
+  }
+}
+.card-readme {
+  max-width: 70%;
+  h1 {
+    font-size: 2.5rem;
+    padding: 1rem 0;
+  }
+  pre {
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 0.5rem;
+    border-radius: 0.5rem;
   }
 }
 </style>
