@@ -8,17 +8,19 @@ import { formatBytes, sumArr } from "../../utils";
 const store = usePackageInfoStore();
 const { packageInfo } = storeToRefs(store);
 
-const hits = computed(() => packageInfo.value.hits);
-const weeklyHits = computed(() => Object.values(hits.value.dates));
-const totalWeeklyHits = computed(() => hits?.value.total);
+const hits = computed(() => packageInfo.value?.hits);
+const weeklyHits = computed(() =>
+  hits.value ? Object.values(hits.value.dates) : [],
+);
+const totalWeeklyHits = computed(() => (hits.value ? hits.value.total : 0));
 
 const weeklyDownloads = computed(() =>
-  Object.values(packageInfo.value?.downloads.dates),
+  Object.values(packageInfo.value?.downloads?.dates ?? {}),
 );
 const totalWeeklyDownloads = computed(() => sumArr(weeklyDownloads.value));
 
 const bandwidthSize = computed(() =>
-  formatBytes(packageInfo.value?.bandwidth?.total),
+  formatBytes(packageInfo.value?.bandwidth?.total ?? 0),
 );
 </script>
 <template>
