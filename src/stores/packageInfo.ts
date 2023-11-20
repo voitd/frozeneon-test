@@ -1,11 +1,11 @@
 import { defineStore, acceptHMRUpdate } from "pinia";
 import { Ref, ref } from "vue";
 import api from "../api";
-import { PackageMeta, PackageInfo } from "./types";
+import { PackageInfo } from "./types";
 import { PackageReq } from "@/api/endpoints.ts";
 
 interface Store {
-  packageInfo: Ref<PackageInfo | PackageMeta | undefined>;
+  packageInfo: Ref<PackageInfo | undefined>;
   isLoading: Ref<boolean>;
   error: Ref<string | null>;
   getPackageInfo: (params: PackageReq) => Promise<void>;

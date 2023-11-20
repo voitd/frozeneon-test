@@ -1,12 +1,6 @@
-<script setup lang="ts">
-const props = defineProps({
-  modelValue: String,
-  modelModifiers: { default: () => ({}) },
-});
-defineEmits(["update:modelValue"]);
-</script>
+<script setup lang="ts"></script>
 <template>
-  <v-footer app height="64" class="bg-indigo">
+  <v-footer app height="64" class="">
     <div class="w-100 d-flex align-center justify-center">
       {{ new Date().getFullYear() }} —
       <a

@@ -8,8 +8,8 @@ const modelValue = defineModel();
     width="auto"
     content-class="modal"
   >
-    <v-card class="mx-auto modal-card bg-indigo" max-width="70vw">
-      <v-toolbar title="Package Info" class="bg-indigo-darken-3">
+    <v-card class="mx-auto modal-card" max-width="70vw">
+      <v-toolbar title="Package Info" class="">
         <v-btn
           variant="text"
           icon="mdi-close"

@@ -46,7 +46,7 @@ const showPackageDetails = (item: PackageInfo) => {
 };
 </script>
 <template>
-  <v-data-table :items="preparedPackages" class="my-4 bg-indigo">
+  <v-data-table :items="preparedPackages" class="my-4 bg-transparent">
     <template #item="{ item }">
       <tr class="table-item" @click="showPackageDetails(item)">
         <td class="text-subtitle-1">{{ item.name }}</td>
@@ -58,7 +58,7 @@ const showPackageDetails = (item: PackageInfo) => {
       </tr>
     </template>
     <template #bottom>
-      <slot name="pagination"> </slot>
+      <slot name="pagination" />
     </template>
   </v-data-table>
   <PackageInfoModal v-model="show" />

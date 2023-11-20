@@ -49,24 +49,17 @@ watchDebounced(
 
 <template>
   <v-app id="inspire">
-    <v-main class="bg-indigo-darken-3">
+    <v-main>
       <v-container>
-        <v-card flat title="NPM Search" class="my-4 bg-indigo">
-          <v-card-text>
-            <Input v-model="text" />
-          </v-card-text>
-        </v-card>
+        <h1>NPM Search</h1>
+        <Input v-model="text" />
 
-        <v-card flat class="my-4 bg-indigo">
-          <v-card-text>
-            <spinner v-if="isLoading" />
-            <PackagesList v-else>
-              <template #pagination>
-                <Pagination v-model="page" :total="total" :size="size" />
-              </template>
-            </PackagesList>
-          </v-card-text>
-        </v-card>
+        <spinner v-if="isLoading" />
+        <PackagesList v-else>
+          <template #pagination>
+            <Pagination v-model="page" :total="total" :size="size" />
+          </template>
+        </PackagesList>
       </v-container>
     </v-main>
     <Footer />
